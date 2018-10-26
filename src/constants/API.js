@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "development") {
   api = {
     getToken: `${prefix}/getwxtoken`,
   }
-} else if (process.env.NODE_ENV === "test") {
+} else if (process.env.NODE_ENV === "production") {
   prefix = ""
   api = {
     getToken: `${prefix}/getwxtoken`,
