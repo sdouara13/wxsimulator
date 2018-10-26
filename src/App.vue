@@ -34,7 +34,7 @@
         /**
          * 注册微信
          * */
-        // this.wxInit();
+        this.wxInit();
       },
       registDevice() {
         this.regist = Send({
