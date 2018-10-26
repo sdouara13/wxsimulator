@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
 } else {
     console.log('外网测试环境');
     isTest = false;
-    url = "ws://139.159.210.220"; // 外网网关
+    url = "ws://139.159.210.220:3000"; // 外网网关
     // httpUrl = 'http://120.79.88.184'; // 外网http服务
 }
 export default {
