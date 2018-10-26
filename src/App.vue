@@ -21,7 +21,9 @@
       }
     },
     mounted() {
-      this.Init();
+      channel.on('ws-open', () => {
+        this.Init();
+      })
     },
     methods: {
       Init() {
