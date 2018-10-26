@@ -7,10 +7,12 @@ if (process.env.NODE_ENV === "development") {
   prefix = "/api"
   api = {
     getToken: `${prefix}/getwxtoken`,
-
   }
 } else if (process.env.NODE_ENV === "test") {
-
+  prefix = ""
+  api = {
+    getToken: `${prefix}/getwxtoken`,
+  }
 }
 
 export const API = api
