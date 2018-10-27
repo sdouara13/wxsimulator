@@ -53,7 +53,8 @@
         const nonceStr = Math.random().toString();
         this.get(API.getToken, {
           timestamp,
-          nonceStr
+          nonceStr,
+          deviceid: this.id,
         })
           .then((res) => {
             console.log("获取签名", res);
