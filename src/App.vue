@@ -83,22 +83,26 @@
             title: '测试分享好友01', // 分享标题
             desc: 'emmmmm', // 分享描述
             link: `http://www.wxapidev.cn/wxsimulator/?deviceid=${this.id}&share=1`, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: '', // 分享图标
-          }, function(res) {
-              //这里是回调函数
+            imgUrl: 'http://www.wxapidev.cn/img/logo.png', // 分享图标
+            success: function () {
+              // 设置成功
+              console.log('分享好友设置成功')
+            }
           });
           wx.updateTimelineShareData({
             title: '测试分享朋友圈01', // 分享标题
             link: `http://www.wxapidev.cn/wxsimulator/?deviceid=${this.id}&share=1`, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-            imgUrl: '', // 分享图标
-          }, function(res) {
-              //这里是回调函数
+            imgUrl: 'http://www.wxapidev.cn/img/logo.png', // 分享图标
+            success: function () {
+              // 设置成功
+              console.log('分享朋友圈设置成功')
+            }
           });
 
         })
         const self = this;
         wx.error(function(res){
-          console.error("微信验证失败", res, "三秒后重试");
+          console.error(res);
           // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
           // setTimeout(() => {
             // self.Init();
