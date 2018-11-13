@@ -7,11 +7,13 @@ if (process.env.NODE_ENV === "development") {
   prefix = "/api"
   api = {
     getToken: `${prefix}/getwxtoken`,
+    getUserAuth: `${prefix}/getuserauth`
   }
 } else if (process.env.NODE_ENV === "production") {
   prefix = ""
   api = {
     getToken: `${prefix}/getwxtoken`,
+    getUserAuth: `${prefix}/getuserauth`
   }
 }
 

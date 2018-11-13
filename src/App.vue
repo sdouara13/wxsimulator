@@ -16,6 +16,7 @@
     name: 'App',
     data() {
       return {
+        appid: 'wx847ad179e85ad077',
         id: getParam("deviceid"),
         regist: null
       }
@@ -34,6 +35,7 @@
         /**
          * 注册微信
          * */
+        console.log("当前url", window.location.href.replace(/#.*/, ''))
         this.wxInit();
       },
       registDevice() {
@@ -51,18 +53,27 @@
       wxInit() {
         const timestamp = Date.now() / 1000 >> 0;
         const nonceStr = Math.random().toString();
+        this.get(API.getUserAuth, {
+          code: getParam('code'),
+          grant_type: 'authorization_code',
+          deviceid: this.id
+        })
+          .then(res => {
+            console.log('用户授权返回', res)
+          })
         this.get(API.getToken, {
           timestamp,
           nonceStr,
           deviceid: this.id,
+          url: window.location.href.replace(/#.*/, '')
         })
           .then((res) => {
-            console.log("获取签名", res, 'wxaca505e7b260c383');
+            console.log("获取签名", res, this.appid);
             if (res.data) {
               wx.config({
                 debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-                appId: 'wxaca505e7b260c383', // 必填，公众号的唯一标识
-                // appId: 'wx847ad179e85ad077', // 测试公众号的唯一标识
+                // appId: 'wxaca505e7b260c383', // 必填，公众号的唯一标识
+                appId: this.appid, // 测试公众号的唯一标识
                 timestamp, // 必填，生成签名的时间戳
                 nonceStr, // 必填，生成签名的随机串
                 signature: res.data, // 必填，签名
@@ -77,8 +88,8 @@
         /**
          * 验证结果
          * */
-        wx.ready(function () {
-          console.log("微信验证成功");
+        wx.ready( () => {
+          console.log("微信sdk准备完毕");
           wx.updateAppMessageShareData({
             title: '测试分享好友01', // 分享标题
             desc: 'emmmmm', // 分享描述

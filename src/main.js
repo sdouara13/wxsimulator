@@ -6,6 +6,8 @@ import utils from '@/utils'
 import '@/services/websocketService/data'
 import config from '@/config/'
 
+
+
 import Vue from 'vue'
 import App from './App'
 import router from './router'
